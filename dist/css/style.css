@@ -1,0 +1,408 @@
+@font-face {
+  font-family: "localLora";
+  src: url("/dist/fonts/lora.ttf") format("ttf supports variations")
+}
+
+body {
+  text-align: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(171, 55, 55);
+  font-family: 'localLora', sans-serif;
+}
+
+#collapse_expand_arrow {
+  height: 20px;
+
+  transition: all 0.3s;
+}
+
+.wishlist_block {
+  width: 93vw;
+  border: 1px solid black;
+  max-width: fit-content;
+  word-wrap: normal;
+  border-radius: 15px;
+  margin: 10px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+}
+
+.wishlist_item {
+  text-align: left;
+  margin-right: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
+  border-top: 1px dotted #b9b3b3;
+  margin-left: -35px;
+  align-items: center;
+  word-wrap: anywhere;
+}
+
+.expanded {
+  max-height: 300px;
+  overflow: visible;
+  padding-top: 10px;
+  transition: all 0.25s ease-in-out;
+  transform-origin: left top;
+  transform: scaleY(1);
+}
+
+li {
+	margin: 0;
+	padding: 12px 0 6px 12px;
+  padding-left: 24px;
+	list-style: none;
+	background-image: url("https://cdn-icons-png.flaticon.com/512/347/347052.png");
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 15px;
+}
+
+.title-header {
+  text-align: center;
+  color: rgb(31, 237, 31);
+  font-size: 65px;
+  transition: all 1s;
+  margin-bottom: 5px;
+}
+
+.new_item_form label, label {
+  font-style: italic;
+  font-weight: 700;
+  font-size: 19px;
+}
+
+p {
+  padding-inline: 10px;
+  font-style: oblique;
+}
+
+input {
+  all: unset;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  border: 1px solid #000;
+  padding: 8px;
+}
+
+button {
+  all: unset;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 4px;
+  background-color:rgb(67, 177, 213);
+  color:white;
+  cursor: pointer;
+  word-wrap: break-word;
+  margin-left: 10px;
+  min-width: fit-content;
+}
+
+.deleteItem {
+  opacity: 30%;
+  background-color: red;
+}
+.deleteItem:hover {
+  opacity: 100%;
+}
+
+.new_item_form, .friend_form, .login_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(157, 46, 46);
+  border-radius: 10px;
+  width: 80vw;
+  padding: 0px;
+  max-width: 350px;
+  font-size: 13px;
+  align-self: center;
+  color: white;
+  transition: all 0.4s;
+}
+
+.subtitle {
+  color: black;
+  font-style: italic;
+  font-variant: sub;
+  padding-bottom: 10px;
+  background-color: #fff;
+  margin-top: 5px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+.new_item_form, .friend_form {
+  max-height: 0px;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
+#popup {
+  position: fixed;
+  background-color: #a3ff00;
+  height: fit-content;
+  border-radius: 35px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border: 3px solid black;
+  background-color: ;
+}
+#popup_title {
+  font-size: 26px;
+  margin-bottom: 15px;
+  border-bottom: 1px dotted #2b2727;
+  padding-bottom: 5px;
+}
+#popup_body {
+  color: #6a6a6a;
+  font-style: italic;
+  font-size: 18px;
+  width: 70%;
+}
+
+#popup_close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	padding: 8px;
+	/*! border: 1px solid black; */
+	border-radius: 30px;
+	background-color: #808080;
+	color: white;
+	cursor: pointer;
+	z-index: 100;
+}
+
+.login_form {
+  max-width: 600px;
+  padding: 15px;
+}
+
+input {
+  background-color: white;
+  color: black;
+  max-width: 90%;
+  width: 90%;
+}
+
+
+.subheader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  transition: all 0.4s;
+}
+
+#logout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px;
+  background-color: gray;
+}
+
+
+.wishlist_delete {
+  margin-left: 15px;
+  transform: translateY(0px);
+  background-color: red;
+}
+
+#friend_form_tooltip {
+  position: relative;;
+  font-style: italic;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+h2 {
+  margin-bottom: 5px;
+  padding-inline: 8px;
+  margin-top: 15px;
+  padding-inline: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+#friend_logs {
+  margin-top: 10px;
+  font-style: italic;
+  color: red;
+}
+
+#wishlist_grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#expand_newitem, #expand_addfriend {
+  display: flex;
+  justify-content: start;
+  align-content: center;
+  text-align: center;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+img {
+  margin-right: 10px
+}
+
+.purchaseItem {
+  font-style: italic;
+  transform: translateY(-2px);
+  font-size: 12px;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-style: solid;
+  text-decoration-color: gray;
+}
+
+#popup_input {
+  width: 80%;
+}
+
+.footer {
+	transition: all 1s;
+	text-align: center;
+	color: white;
+	padding-top: 8px;
+	margin-top: 16px;
+	font-size: 12px;
+}
+
+.footer .github {
+	color: #f0ff3b;
+}
+
+#notifications_feed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#qr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.notification {
+  background-color: white;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+
+.wishlist_block ul {
+  margin-top: 0px;
+}
+
+#notif_bell {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 10px;
+  background-color: #b0ff3d;
+  color: black;
+}
+
+
+.signup_tip {
+  background-color: lightgreen;
+  padding: 15px;
+  border-radius: 15px;
+  font-weight: 700;
+}
+
+a {
+  all:unset;
+  color:blue;
+  cursor: pointer;
+}
+
+.input-currency:before {
+  position: absolute;
+  top: 0;
+  content:"$";
+  left: 5px;
+}
+
+.price {
+  white-space: nowrap;
+  font-size: 12px;
+}
+
+
+#logs {
+  color: yellow;
+  font-variant: all-small-caps;
+  margin-top: 11px;
+}
+
+.sidebuttons {
+  min-width: fit-content;
+}
+
+
+.wishlist_item a {
+  text-align: left;
+  padding-inline: 7px;
+}
+
+@media screen and (max-width: 600px) {
+  .subheader {
+  flex-direction: column;
+  }
+  .title-header {
+    font-size: 48px;
+    word-break: keep-all;
+  }
+  .new_item_form, .friend_form {
+    max-width: unset;
+  }
+  input {
+    width: 90%;
+  }
+}
+@media screen and (max-width: 300px) {
+  .title-header {
+    font-size: 24px;
+    word-break: keep-all;
+    margin-top: 45px;
+    margin-bottom: 35px;
+  }
+}
+

@@ -1,0 +1,13 @@
+<script>
+    if (window.location.href.includes('rsvp')) {
+        // get ?id= from url
+        let id = window.location.href.split('?id=')[1];
+        fetchData(id);
+    }
+
+    async function fetchData(id) {
+        let response = await fetch(`/api/get/guest/${id}`);
+        let data = await response.json();
+        console.log(data);
+    }
+</script>

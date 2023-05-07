@@ -1,0 +1,32 @@
+{
+  "name": "jam-wedding",
+  "version": "1.0.0",
+  "description": "A wishlist application built to stop double-gifting (when two or more people give one person the same gift that they asked for).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node dist/scripts/backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josephrcox/jam-wedding.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josephrcox/jam-wedding/issues"
+  },
+  "homepage": "https://github.com/josephrcox/jam-wedding#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "fs": "^0.0.1-security",
+    "mongoose": "^7.1.0",
+    "mysql2": "^3.3.0",
+    "path": "^0.12.7"
+  }
+}
