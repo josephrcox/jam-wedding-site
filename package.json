@@ -4,7 +4,7 @@
   "description": "A wishlist application built to stop double-gifting (when two or more people give one person the same gift that they asked for).",
   "main": "server.js",
   "scripts": {
-    "start": "node dist/scripts/backend/server.js",
+    "start": "nodemon dist/scripts/backend/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -27,6 +27,7 @@
     "fs": "^0.0.1-security",
     "mongoose": "^7.1.0",
     "mysql2": "^3.3.0",
+    "nodemon": "^2.0.22",
     "path": "^0.12.7"
   }
 }
