@@ -67,26 +67,38 @@ app.put('/api/update/guest/:id', async (req, res) => {
 });
 
 app.get('/rsvp/submitted', async (req, res) => {
-  let id = req.query.id;
+	let id = req.query.id;
 
-  if (id === undefined) {
-    return res.redirect('/');
-  }
-  let guest = await fetchGuests(id);
-  console.log(guest.status.status)
-  if (guest.status.status === 'accepted invite') {
-    return res.render('rsvp-accepted.ejs');
-  } else if (guest.status.status === 'denied invite') {
-    return res.render('rsvp-denied.ejs');
-  } else if (guest.status.status === 'will invite') {
-    return res.redirect(`/rsvp?id=${id}`);
-   } else {
-      return res.redirect('/');
-    }
+	if (id === undefined) {
+		return res.redirect('/');
+	}
+	let guest = await fetchGuests(id);
+	console.log(guest.status.status);
+	if (guest.status.status === 'accepted invite') {
+		return res.render('rsvp-accepted.ejs');
+	} else if (guest.status.status === 'denied invite') {
+		return res.render('rsvp-denied.ejs');
+	} else if (guest.status.status === 'will invite') {
+		return res.redirect(`/rsvp?id=${id}`);
+	} else {
+		return res.redirect('/');
+	}
+});
+
+app.get('/admin/:pw', async (req, res) => {
+	if (req.params.pw !== process.env.ADMIN_PW) {
+		return res.redirect('/');
+	}
+	let guest_list = await fetchGuests();
+	res.render('admin.ejs', { guest_list: guest_list });
 });
 
 app.get('/rsvp', async (req, res) => {
 	res.render('rsvp.ejs');
+});
+
+app.get('/aboutus', async (req, res) => {
+	res.render('aboutus.ejs');
 });
 
 app.get('/', async (req, res) => {
@@ -99,7 +111,7 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
-	console.log('Listening on port', port);
+	console.log('Listening on http://localhost:8080', port);
 });
 
 async function fetchGuests(optionalID) {

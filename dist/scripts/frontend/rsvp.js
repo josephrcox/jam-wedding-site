@@ -1,3 +1,5 @@
+const page_rsvp = document.querySelector('.page_rsvp');
+const guest_name = document.getElementById('guest_name');
 const rsvp_yes = document.getElementById('rsvp-yes');
 const rsvp_no = document.getElementById('rsvp-no');
 const rsvp_buttons = document.getElementById('rsvp-buttons');
@@ -8,10 +10,21 @@ let guest;
 if (window.location.href.includes('rsvp')) {
 	// get ?id= from url
 	let id = window.location.href.split('?id=')[1];
+	if (id === undefined || id.lenght === 0) {
+		if (localStorage.weddingGuestID === undefined) {
+			window.location.href = '/';
+		} else {
+			id = localStorage.weddingGuestID;
+		}
+	} else {
+		localStorage.setItem('weddingGuestID', id);
+	}
+	localStorage.setItem('id', id);
 	fetchData(id);
 }
 
 async function fetchData(id) {
+	loading.style.display = '';
 	let response = await fetch(`/api/get/guest/${id}`);
 	let data = await response.json();
 	if (data.length === 0) {
@@ -21,6 +34,8 @@ async function fetchData(id) {
 	guest = data;
 
 	document.title = `RSVP for ${data.name}`;
+	guest_name.innerText = data.name;
+	page_rsvp.style.display = 'flex';
 	handleStatus();
 }
 
@@ -49,7 +64,7 @@ rsvp_yes.addEventListener('click', async () => {
 		}),
 	});
 
-	window.location.href = `/rsvp/accepted?id=${guest.id}`;
+	window.location.href = `/rsvp/submitted/?id=${guest.id}`;
 });
 
 rsvp_no.addEventListener('click', async () => {
@@ -63,5 +78,5 @@ rsvp_no.addEventListener('click', async () => {
 		}),
 	});
 
-	window.location.href = `/rsvp/denied?id=${guest.id}`;
+	window.location.href = `/rsvp/submitted?id=${guest.id}`;
 });

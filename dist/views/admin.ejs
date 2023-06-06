@@ -1,0 +1,14 @@
+<title>Admin</title>
+
+<% guest_list.forEach(function(guest) { %>
+<% if (guest.status === 'will invite') { %>
+<li><%= JSON.stringify(guest) %></li>
+<% } %> <% if (guest.status === 'invited') { %>
+<li><%= JSON.stringify(guest) %></li>
+<% } %> <% if (guest.status.includes('maybe')) { %>
+<li><%= JSON.stringify(guest) %></li>
+<% } %> <% if (guest.status.includes('declined')) { %>
+<li><%= JSON.stringify(guest) %></li>
+<% } %> <% if (guest.status.includes('accepted')) { %>
+<li><%= JSON.stringify(guest) %></li>
+<% } %> <% }); %>

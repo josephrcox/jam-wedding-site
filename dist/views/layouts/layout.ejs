@@ -4,14 +4,27 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="../../../dist/css/style.css">
+		<link rel="stylesheet" href="../../../dist/css/style.css" />
 	</head>
 	<body>
-        <div class="layout-header flex-row">
-            <a href="/aboutus">About us</a>
-            <a href="/">Jam Wedding</a>
-            <a href="/faq">FAQ</a>
-        </div>
-		<%- body %>
+		<div class="siteBody">
+			<div class="header">
+				<img src="../../../dist/images/bg.png" class="bgHeader" />
+				<h1 class="layout-header flex-row">
+					<a href="/" class="logo">Jam Wedding</a>
+				</h1>
+				<div class="header-subitems">
+					<a href="/#aboutus" class="header-subitem">about us</a>
+					<a href="/#details" class="header-subitem">wedding deets</a>
+					<a href="/#faq" class="header-subitem">faq</a>
+				</div>
+			</div>
+
+			<span id="loading" style="display: none">Loading...</span>
+			<%- body %>
+			<div class="centerImg">
+				<img src="../../../dist/images/bg.png" class="bgFooter" />
+			</div>
+		</div>
 	</body>
 </html>
