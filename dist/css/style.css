@@ -84,6 +84,11 @@ h4 {
 	height: 100%;
 	color: #333333;
 	z-index: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	flex-direction: column;
 }
 
 body {
@@ -115,6 +120,19 @@ body {
 	margin-bottom: -81px;
 	transform: translateY(-35px);
 	transition: all 0.5s ease-in-out;
+}
+
+
+.bgHeaderDiv > div {
+  max-width: 550px;
+}
+.bgHeaderDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  justify-items: center;
+  align-items: center;
 }
 
 .center {
@@ -235,6 +253,17 @@ h2 {
 .header-subitems > div {
 	width: 80vw;
 	text-align: center;
+}
+
+#countdown {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	background-color: var(--copper);
+	color: var(--ivory);
+	font-size: 14px;
+	padding: 7px;
 }
 
 .header-subitem {

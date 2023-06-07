@@ -42,19 +42,32 @@ document.addEventListener('scroll', () => {
 const clickableSections = document.querySelectorAll('.clickableSection');
 
 for (let i = 0; i < clickableSections.length; i++) {
-    clickableSections[i].addEventListener('click', () => {
-        // get 2nd child of clickableSection and make it visible
-        const section = clickableSections[i].children[1];
-        if (section.style.maxHeight != '0px' && section.style.maxHeight != '') {
-            console.log(section.style.maxHeight);
-            section.style.maxHeight = '0px';
-            section.style.margin = '0';
-
-        } else {
-            section.style.display = 'block';
-            section.style.maxHeight = '80px';
-            section.style.marginBottom = '20px';
-        }
-
-    });
+	clickableSections[i].addEventListener('click', () => {
+		// get 2nd child of clickableSection and make it visible
+		const section = clickableSections[i].children[1];
+		if (section.style.maxHeight != '0px' && section.style.maxHeight != '') {
+			console.log(section.style.maxHeight);
+			section.style.maxHeight = '0px';
+			section.style.margin = '0';
+		} else {
+			section.style.display = 'block';
+			section.style.maxHeight = '80px';
+			section.style.marginBottom = '20px';
+		}
+	});
 }
+
+const countdown = document.querySelector('#countdown');
+
+const weddingDate = new Date('2024-09-07T15:00:00');
+
+const currentDate = new Date();
+const diff = weddingDate - currentDate;
+
+const days = Math.floor(diff / 1000 / 60 / 60 / 24);
+const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
+const minutes = Math.floor(diff / 1000 / 60) % 60;
+
+countdown.innerHTML = ` 
+		<div>Only ${days} <span>days, </span>${hours} <span>hours,</span> and ${minutes} <span>minutes</span> left to go!</div>
+	`;
