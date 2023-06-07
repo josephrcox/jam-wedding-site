@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Parisienne&family=Satisfy&display=swap');
 
 @font-face {
 	font-family: 'specialFont';
@@ -122,17 +122,16 @@ body {
 	transition: all 0.5s ease-in-out;
 }
 
-
 .bgHeaderDiv > div {
-  max-width: 550px;
+	max-width: 550px;
 }
 .bgHeaderDiv {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  justify-items: center;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	justify-items: center;
+	align-items: center;
 }
 
 .center {
@@ -183,7 +182,8 @@ span {
 }
 
 .layout-header > * {
-	font-family: dancing script;
+	font-family: great vibes;
+
 	font-size: 64px;
 	width: 100%;
 	text-align: center;
@@ -354,6 +354,9 @@ h2 {
 	}
 	.header {
 		position: sticky;
+	}
+	.header-subitem {
+		font-size: 16px;
 	}
 }
 
