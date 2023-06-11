@@ -1,5 +1,10 @@
 <title>RSVP</title>
 
 <div class="page_rsvp">
-	<div id="information">ACCEPTED INVITE!</div>
+	<h3><div id="information">Shucks! We are so excited to have you, <span id='name'></span>. 💜</div></h3>
+	<a href="/">Return Home</a>
 </div>
+
+<script>
+	document.getElementById('name').innerText = localStorage.getItem('weddingGuestName') || 'pal';
+</script>

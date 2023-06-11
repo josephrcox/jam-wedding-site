@@ -8,6 +8,23 @@
 	</head>
 	<body>
 		<div class="siteBody">
+			<div id="followUpQsModal" style="display: none;">
+				<div id="fuq_additionalGuests">
+					<h2>How many additional guests are you bringing?</h2>
+					<h3>You are allowed <span id="followUpQsModalNum"></span></h3>
+					<input type="number" id="followUpQsAddGuestsInput" min="0" max="" >
+				</div>
+				<div id="fuq_recommendedSongs">
+					<h2>What songs would you like to hear at the reception?</h2>
+					<input type="text" id="followUpQsSongInput" placeholder="September - Earth, Wind, & Fire" />
+				</div>
+				<div id="fuq_dietaryRestrictions">
+					<h2>Do you have any dietary restrictions?</h2>
+					<input type="text" id="followUpQsDiet" placeholder="I can't eat eggs" />
+				</div>
+
+				<button id="followUpQsModalSubmit">Submit RSVP</button>
+			</div>
 			<div class="header">
 				<div class="bgHeaderDiv">
 					<div>

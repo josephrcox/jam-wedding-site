@@ -46,6 +46,31 @@ app.get('/api/get/guest/:id', async (req, res) => {
 	res.json(guest);
 });
 
+app.put('/api/comment/guest/:id', async (req, res) => {
+	// get body
+	let comment = req.body.comment;
+
+	let requestBody = {
+		comment_text: comment,
+		assignee: null,
+		notify_all: true,
+	};
+
+	const response = await fetch(
+		`https://api.clickup.com/api/v2/task/${req.params.id}/comment`,
+		{
+			method: 'POST',
+			headers: {
+				Authorization: API_KEY,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(requestBody),
+		}
+	);
+	const data = await response.json();
+	res.json(data);
+});
+
 app.put('/api/update/guest/:id', async (req, res) => {
 	// Updates status of guest
 	let guest = await fetchGuests(req.params.id);

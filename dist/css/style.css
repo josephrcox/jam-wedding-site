@@ -215,7 +215,9 @@ span {
 	text-align: center;
 }
 
-h2 {
+h2,
+h3,
+h4 {
 	/* dont select on double click */
 	user-select: none;
 	color: var(--olive-green);
@@ -296,13 +298,14 @@ h2 {
 	background-color: #a23a3a;
 }
 
-.rsvp-button {
-	margin: auto;
+.rsvp-button,
+#followUpQsModalSubmit {
 	border-radius: 10px;
 	border: none;
 	padding: 15px;
 	font-size: 20px;
 	margin-inline: 10px;
+	margin: 15px;
 }
 
 .rsvp-button:hover {
@@ -318,6 +321,7 @@ h2 {
 	align-content: center;
 	align-items: center;
 	padding-bottom: 20px;
+	gap: 30px;
 }
 
 .home-content {
@@ -346,6 +350,91 @@ h2 {
 	font-family: font-italic;
 	border-radius: 5px;
 	font-size: 16px;
+}
+
+#followUpQsModal {
+	background-color: var(--sage);
+	width: 100vw;
+	height: 100vh;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+#plus1number,
+#followUpQsModalNum {
+	font-family: font-semibold;
+	color: var(--copper);
+}
+
+#followUpQsAddGuestsInput {
+	width: 100%;
+	height: 40px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 26px;
+	max-width: 75px;
+}
+
+textarea:focus,
+input:focus {
+	outline: none;
+}
+
+#followUpQsModalSubmit {
+	width: 100%;
+	background-color: var(--copper);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+	max-width: 162px;
+}
+
+input[type='text'] {
+	width: 70%;
+	max-width: 100%;
+	margin-inline: 10px;
+	font-size: 22px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+input {
+	padding: 13px;
+	border-radius: 15px;
+	border: none;
+}
+
+::placeholder {
+	/* Chrome, Firefox, Opera, Safari 10.1+ */
+	color: rgb(185, 185, 185);
+	opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: rgb(185, 185, 185);
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: rgb(185, 185, 185);
 }
 
 @media (max-width: 550px) {
