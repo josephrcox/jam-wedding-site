@@ -25,6 +25,9 @@ if (window.location.href.includes('rsvp')) {
 
 async function fetchData(id) {
 	loading.style.display = '';
+	if (id.includes('#')) {
+		id = id.split('#')[1];
+	}
 	let response = await fetch(`/api/get/guest/${id}`);
 	let data = await response.json();
 	if (data.length === 0) {

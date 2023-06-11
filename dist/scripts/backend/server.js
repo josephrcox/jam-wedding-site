@@ -38,7 +38,11 @@ const API_KEY = process.env.API_KEY;
 // Document routes
 
 app.get('/api/get/guest/:id', async (req, res) => {
-	let guest = await fetchGuests(req.params.id);
+	let id = req.params.id;
+	if (id.includes('#')) {
+		id = req.params.id.replace('#', '');
+	}
+	let guest = await fetchGuests(id);
 	res.json(guest);
 });
 
