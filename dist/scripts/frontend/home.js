@@ -59,7 +59,7 @@ for (let i = 0; i < clickableSections.length; i++) {
 
 const countdown = document.querySelector('#countdown');
 
-const weddingDate = new Date('2024-09-07T15:00:00');
+const weddingDate = new Date('2024-09-07T16:00:00');
 
 const currentDate = new Date();
 const diff = weddingDate - currentDate;
@@ -69,5 +69,5 @@ const hours = Math.floor(diff / 1000 / 60 / 60) % 24;
 const minutes = Math.floor(diff / 1000 / 60) % 60;
 
 countdown.innerHTML = ` 
-		<div>Only ${days} <span>days, </span>${hours} <span>hours,</span> and ${minutes} <span>minutes</span> left to go!</div>
+		<div>${days} <span>days - </span>${hours} <span>hours - </span> ${minutes} <span>minutes</span> left to go!</div>
 	`;
