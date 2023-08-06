@@ -26,7 +26,7 @@ app.use(
 		limit: '50mb',
 		extended: true,
 		parameterLimit: 50000,
-	})
+	}),
 );
 app.use(bodyParser.text({ limit: '200mb' }));
 app.use(express.json());
@@ -38,19 +38,20 @@ const API_KEY = process.env.API_KEY;
 // Document routes
 
 app.get('/api/get/guest/:id', async (req, res) => {
-	let id = req.params.id;
+	const id = req.params.id;
 	if (id.includes('#')) {
 		id = req.params.id.replace('#', '');
 	}
-	let guest = await fetchGuests(id);
+	const guest = await fetchGuests(id);
+	console.log(guest);
 	res.json(guest);
 });
 
 app.put('/api/comment/guest/:id', async (req, res) => {
 	// get body
-	let comment = req.body.comment;
+	const comment = req.body.comment;
 
-	let requestBody = {
+	const requestBody = {
 		comment_text: comment,
 		assignee: null,
 		notify_all: true,
@@ -65,7 +66,7 @@ app.put('/api/comment/guest/:id', async (req, res) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(requestBody),
-		}
+		},
 	);
 	const data = await response.json();
 	res.json(data);
@@ -73,9 +74,9 @@ app.put('/api/comment/guest/:id', async (req, res) => {
 
 app.put('/api/update/guest/:id', async (req, res) => {
 	// Updates status of guest
-	let guest = await fetchGuests(req.params.id);
-	let status = req.body.status;
-	let body = {
+	const guest = await fetchGuests(req.params.id);
+	const status = req.body.status;
+	const body = {
 		status: status,
 	};
 
@@ -88,7 +89,7 @@ app.put('/api/update/guest/:id', async (req, res) => {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify(body),
-		}
+		},
 	);
 	const data = await response.json();
 
@@ -96,7 +97,7 @@ app.put('/api/update/guest/:id', async (req, res) => {
 });
 
 app.get('/rsvp/submitted', async (req, res) => {
-	let id = req.query.id;
+	const id = req.query.id;
 
 	if (id === undefined) {
 		return res.redirect('/');
@@ -118,7 +119,7 @@ app.get('/admin/:pw', async (req, res) => {
 	if (req.params.pw !== process.env.ADMIN_PW) {
 		return res.redirect('/');
 	}
-	let guest_list = await fetchGuests();
+	const guest_list = await fetchGuests();
 	res.render('admin.ejs', { guest_list: guest_list });
 });
 
@@ -152,39 +153,70 @@ async function fetchGuests(optionalID) {
 		include_closed: 'false',
 	}).toString();
 
-	const resp = await fetch(
-		`https://api.clickup.com/api/v2/list/${guest_list_id}/task?${query}`,
-		{
-			method: 'GET',
-			headers: {
-				Authorization: API_KEY,
+	let resp;
+	if (optionalID) {
+		resp = await fetch(
+			`https://api.clickup.com/api/v2/task/${optionalID}/?${query}`,
+			{
+				method: 'GET',
+				headers: {
+					Authorization: API_KEY,
+				},
 			},
-		}
-	);
+		);
+	} else {
+		resp = await fetch(
+			`https://api.clickup.com/api/v2/list/${guest_list_id}/task?${query}`,
+			{
+				method: 'GET',
+				headers: {
+					Authorization: API_KEY,
+				},
+			},
+		);
+	}
 
 	let data = await resp.json();
-	for (let i = 0; i < data.tasks.length; i++) {
-		if (optionalID) {
-			if (data.tasks[i].id !== optionalID) {
-				continue;
-			} else {
-				return data.tasks[i];
+	console.log(data);
+	if (optionalID) {
+		let g = Object.create(guestObject);
+		g.id = data.id;
+		g.name = data.name;
+		g.status = data.status.status;
+		g.status_type = data.status.type;
+		for (let c = 0; c < data.custom_fields.length; c++) {
+			if (data.custom_fields[c].id == '487bc19e-aacd-4f60-802a-770d6a3bab2a') {
+				g.totalGuests = data.custom_fields[c].value;
 			}
 		}
-		let g = Object.create(guestObject);
-		g.id = data.tasks[i].id;
-		g.name = data.tasks[i].name;
-		g.status = data.tasks[i].status.status;
-		guest_list.push(g);
+
+		return g;
+	} else {
+		for (let i = 0; i < data.tasks.length; i++) {
+			let g = Object.create(guestObject);
+			g.id = data.tasks[i].id;
+			g.name = data.tasks[i].name;
+			g.status = data.tasks[i].status.status;
+			g.status_type = data.tasks[i].status.type;
+			for (let c = 0; c < data.tasks[i].custom_fields.length; c++) {
+				if (
+					data.tasks[i].custom_fields[c].id ==
+					'487bc19e-aacd-4f60-802a-770d6a3bab2a'
+				) {
+					g.totalGuests = data.tasks[i].custom_fields[c].value;
+				}
+			}
+			guest_list.push(g);
+		}
 	}
 
 	return guest_list;
 }
 
-// guest object
-
 const guestObject = {
 	id: '',
 	name: '',
 	status: '',
+	status_type: '', // "custom" means active
+	totalGuests: 1,
 };

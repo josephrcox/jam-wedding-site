@@ -3,13 +3,12 @@ const guest_name = document.getElementById('guest_name');
 const rsvp_yes = document.getElementById('rsvp-yes');
 const rsvp_no = document.getElementById('rsvp-no');
 const rsvp_buttons = document.getElementById('rsvp-buttons');
-const loading = document.getElementById('loading');
 const plus1 = document.getElementById('plus1');
 
 const followUpQsModal = document.getElementById('followUpQsModal');
 const followUpQsModalNum = document.getElementById('followUpQsModalNum');
 const followUpQsAddGuestsInput = document.getElementById(
-	'followUpQsAddGuestsInput'
+	'followUpQsAddGuestsInput',
 );
 const followUpQsModalSubmit = document.getElementById('followUpQsModalSubmit');
 const fuq_additionalGuests = document.getElementById('fuq_additionalGuests');
@@ -22,7 +21,7 @@ let plus1Count = 0;
 if (window.location.href.includes('rsvp')) {
 	// get ?id= from url
 	let id = window.location.href.split('?id=')[1];
-	if (id === undefined || id.lenght === 0) {
+	if (id === undefined || id.length === 0) {
 		if (localStorage.weddingGuestID === undefined) {
 			window.location.href = '/';
 		} else {
@@ -36,7 +35,6 @@ if (window.location.href.includes('rsvp')) {
 }
 
 async function fetchData(id) {
-	loading.style.display = '';
 	if (id.includes('#')) {
 		id = id.split('#')[1];
 	}
@@ -51,14 +49,14 @@ async function fetchData(id) {
 
 	document.title = `RSVP for ${data.name}`;
 	guest_name.innerText = data.name;
+	document.getElementById('loading').remove();
 	page_rsvp.style.display = 'flex';
 	handleStatus();
 	handlePlus1();
 }
 
 function handleStatus() {
-	let status = guest.status.status.toLowerCase();
-	console.log(status);
+	let status = guest.status.toLowerCase();
 
 	if (status === 'will invite' || status === 'invited') {
 		rsvp_buttons.style.display = '';
@@ -67,22 +65,29 @@ function handleStatus() {
 	} else {
 		window.location.href = '/';
 	}
-	loading.style.display = 'none';
 }
 
 function handlePlus1() {
-	for (let i = 0; i < guest.custom_fields.length; i++) {
-		if (guest.custom_fields[i].id == '487bc19e-aacd-4f60-802a-770d6a3bab2a') {
-			if (guest.custom_fields[i].value != '1') {
-				guestIsBringingPlus1 = true;
-				plus1.style.display = 'block';
-				plus1Count = guest.custom_fields[i].value - 1;
-				if (plus1Count == 1) {
-					plus1.innerHTML = plus1.innerHTML.replace('guests.', 'guest.');
-				}
-				document.getElementById('plus1number').innerText = plus1Count;
-			}
+	if (guest.totalGuests > 1) {
+		plus1.style.display = 'block';
+		plus1Count = guest.totalGuests - 1;
+		if (plus1Count == 1) {
+			plus1.innerHTML = plus1.innerHTML.replace('guests.', 'guest.');
 		}
+		document.getElementById('plus1number').innerText = plus1Count;
+
+		plus1people();
+		setInterval(function () {
+			plus1people();
+		}, 1000);
+	}
+}
+
+function plus1people() {
+	document.getElementById('plus1people').innerHTML = '🫵 (you) + ';
+	for (let i = 0; i < plus1Count; i++) {
+		const randomDancer = Math.random() < 0.5 ? '🕺' : '💃';
+		document.getElementById('plus1people').innerHTML += randomDancer;
 	}
 }
 
