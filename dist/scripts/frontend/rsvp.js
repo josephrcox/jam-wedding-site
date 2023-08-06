@@ -6,6 +6,7 @@ const rsvp_yes = document.getElementById('rsvp-yes');
 const rsvp_no = document.getElementById('rsvp-no');
 const rsvp_buttons = document.getElementById('rsvp-buttons');
 const plus1 = document.getElementById('plus1');
+const loading = document.getElementById('loading');
 
 const followUpQsModal = document.getElementById('followUpQsModal');
 const followUpQsModalNum = document.getElementById('followUpQsModalNum');
@@ -51,18 +52,20 @@ async function fetchData(id) {
 	guest = data;
 	localStorage.setItem('weddingGuestName', guest.name);
 
-	document.title = `RSVP for ${data.name}`;
 	guest_name.innerText = data.name;
 	let status = guest.status.toLowerCase();
-
+	loading.style.display = 'none';
 	if (guest.status_type === 'custom') {
 		rsvp_invite.style.maxHeight = '500px';
 		rsvp_invite.style.padding = '20px';
+		rsvp_buttons.style.display = '';
 		handlePlus1();
 	} else if (status == 'accepted invite') {
 		rsvp_accepted.style.maxHeight = '500px';
 		rsvp_accepted.style.padding = '20px';
-		rsvp_accepted.innerHTML = `We are SOO excited to have you, ${guest.name}! ❤️ `;
+		rsvp_accepted.innerHTML = `We are SOO excited to have you, ${
+			guest.name
+		}! ❤️ <br />You are allowed to bring ${guest.totalGuests - 1} guests.`;
 		localStorage.setItem('weddingGuestAttendance', 'true');
 	} else if (status === 'denied invite') {
 		rsvp_denied.style.maxHeight = '500px';

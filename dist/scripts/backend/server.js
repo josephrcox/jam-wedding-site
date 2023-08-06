@@ -7,9 +7,6 @@ const expressLayouts = require('express-ejs-layouts');
 const { response } = require('express');
 const path = require('path');
 const fs = require('fs');
-const cookieParser = require('cookie-parser');
-
-app.use(cookieParser());
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
