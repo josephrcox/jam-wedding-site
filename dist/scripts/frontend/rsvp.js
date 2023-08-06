@@ -1,4 +1,6 @@
-const page_rsvp = document.querySelector('.page_rsvp');
+const rsvp_invite = document.querySelector('.rsvp_invite');
+const rsvp_accepted = document.querySelector('.rsvp_accepted');
+const rsvp_denied = document.querySelector('.rsvp_denied');
 const guest_name = document.getElementById('guest_name');
 const rsvp_yes = document.getElementById('rsvp-yes');
 const rsvp_no = document.getElementById('rsvp-no');
@@ -18,21 +20,23 @@ const followUpQsDiet = document.getElementById('followUpQsDiet');
 let guest;
 let plus1Count = 0;
 
-if (window.location.href.includes('rsvp')) {
-	// get ?id= from url
-	let id = window.location.href.split('?id=')[1];
-	if (id === undefined || id.length === 0) {
-		if (localStorage.weddingGuestID === undefined) {
-			window.location.href = '/';
-		} else {
+function init() {
+	let id = window.location.search.split('?id=')[1];
+
+	showOrHideElementsBasedOnLocalData();
+
+	if (
+		(id !== undefined && id.length !== 0) ||
+		localStorage.weddingGuestID !== undefined
+	) {
+		if (localStorage.weddingGuestID !== undefined) {
 			id = localStorage.weddingGuestID;
 		}
-	} else {
 		localStorage.setItem('weddingGuestID', id);
+		fetchData(id);
 	}
-	localStorage.setItem('id', id);
-	fetchData(id);
 }
+init();
 
 async function fetchData(id) {
 	if (id.includes('#')) {
@@ -49,21 +53,23 @@ async function fetchData(id) {
 
 	document.title = `RSVP for ${data.name}`;
 	guest_name.innerText = data.name;
-	document.getElementById('loading').remove();
-	page_rsvp.style.display = 'flex';
-	handleStatus();
-	handlePlus1();
-}
-
-function handleStatus() {
 	let status = guest.status.toLowerCase();
 
-	if (status === 'will invite' || status === 'invited') {
-		rsvp_buttons.style.display = '';
-	} else if (status === 'denied invite' || status === 'accepted invite') {
-		window.location.href = `/rsvp/submitted?id=${guest.id}`;
-	} else {
-		window.location.href = '/';
+	if (guest.status_type === 'custom') {
+		rsvp_invite.style.maxHeight = '500px';
+		rsvp_invite.style.padding = '20px';
+		handlePlus1();
+	} else if (status == 'accepted invite') {
+		rsvp_accepted.style.maxHeight = '500px';
+		rsvp_accepted.style.padding = '20px';
+		rsvp_accepted.innerHTML = `We are SOO excited to have you, ${guest.name}! ❤️ `;
+		localStorage.setItem('weddingGuestAttendance', 'true');
+	} else if (status === 'denied invite') {
+		rsvp_denied.style.maxHeight = '500px';
+		rsvp_denied.style.padding = '20px';
+		rsvp_denied.innerHTML =
+			'You have declined the invitation. If this was a mistake, please reach out to us. ';
+		localStorage.setItem('weddingGuestAttendance', 'false');
 	}
 }
 
@@ -139,8 +145,8 @@ followUpQsModalSubmit.addEventListener('click', async () => {
 			status: 'accepted invite',
 		}),
 	});
-
-	window.location.href = `/rsvp/submitted/?id=${guest.id}`;
+	localStorage.setItem('weddingGuestAttendance', 'true');
+	window.location.href = `/`;
 });
 
 rsvp_no.addEventListener('click', async () => {
@@ -153,6 +159,15 @@ rsvp_no.addEventListener('click', async () => {
 			status: 'denied invite',
 		}),
 	});
-
-	window.location.href = `/rsvp/submitted?id=${guest.id}`;
+	localStorage.setItem('weddingGuestAttendance', 'false');
+	window.location.href = `/`;
 });
+
+function showOrHideElementsBasedOnLocalData() {
+	const attendance = localStorage.getItem('weddingGuestAttendance') == 'true';
+	const attendanceWalledElements = document.getElementsByClassName('walled');
+	for (let i = 0; i < attendanceWalledElements.length; i++) {
+		if (attendance) attendanceWalledElements[i].style.display = '';
+		else attendanceWalledElements[i].style.display = 'none';
+	}
+}

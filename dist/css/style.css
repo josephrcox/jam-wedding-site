@@ -278,7 +278,7 @@ h4 {
 }
 
 #rsvp-yes {
-	background-color: #28952b;
+	background-color: var(--olive-green);
 	color: white;
 }
 
@@ -287,7 +287,7 @@ h4 {
 }
 
 #rsvp-no {
-	background-color: #db362a;
+	background-color: var(--olive-green);
 	color: white;
 }
 
@@ -309,8 +309,22 @@ h4 {
 	cursor: pointer;
 }
 
+.linkAccent {
+	color: #ff0000 !important;
+	text-decoration: underline;
+}
+
+.rsvp_invite * {
+	color: white;
+}
+.rsvp_invite h2,
+.rsvp_invite p {
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+
 .home,
-.page_rsvp {
+.rsvp_block {
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
@@ -318,6 +332,18 @@ h4 {
 	align-content: center;
 	align-items: center;
 	padding-bottom: 20px;
+}
+
+.rsvp_block {
+	padding: 0px;
+	background-color: #90a07e;
+	/* border-radius: 70px; */
+	text-align: center;
+	color: white;
+	max-height: 0px;
+	overflow: clip;
+	margin: 0;
+	transition: all 1s;
 }
 
 .home-content {
@@ -334,8 +360,8 @@ h4 {
 }
 
 .accent {
-	color: #851af0;
-	font-family: font-semibold-italic;
+	color: #7f00ff;
+	/* font-family: font-semibold-italic; */
 }
 
 .tooltip {

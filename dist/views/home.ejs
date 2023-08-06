@@ -9,8 +9,42 @@
 		</p>
 		<p>
 			Scroll down to learn more, and make sure to RSVP using the
-			<span class="italic">exclusive</span> link that we sent you personally.
+			<span class="italic">exclusive</span> link that we sent you personally so
+			that you confirm or decline attendance.
 		</p>
+		<div class="rsvp_invite rsvp_block">
+			<span id="loading">Loading your invite, stand by!</span>
+			<div id="information">
+				<h2>
+					<span id="guest_name"></span>, you are invited to join us on our
+					special day!
+				</h2>
+				<p id="plus1" style="display: none">
+					Your invite includes <span id="plus1number"></span> additional guests.
+					<span id="plus1people"></span>
+				</p>
+
+				<br />
+				<p>
+					Please check out the
+					<a href="/#details" class="linkAccent">event details</a> +
+					<a href="/#faq" class="linkAccent">FAQ</a>. If you have any questions,
+					feel free to reach out to us.
+				</p>
+			</div>
+			<br />
+			<p>Once you know, please RSVP below!</p>
+			<div id="rsvp-buttons" style="display: none">
+				<button id="rsvp-no" class="rsvp-button">NO 🚫</button>
+				<button id="rsvp-yes" class="rsvp-button">YES 🥳</button>
+			</div>
+		</div>
+		<div class="rsvp_accepted rsvp_block">
+			<!-- filled with JS -->
+		</div>
+		<div class="rsvp_denied rsvp_block">
+			<!-- filled with JS -->
+		</div>
 
 		<a id="aboutus" href="/#aboutus"><h2>About us</h2></a>
 		<div id="aboutus-section">
@@ -24,15 +58,35 @@
 			<p>spiderman, roger</p>
 		</div>
 
-		<p class="tooltip">Sooo.... Get to the details!</p>
 		<a id="details" href="/#details"><h2>Wedding deets (details)</h2></a>
-		<h4>Event timeline</h4>
+		<a href="../../dist/jamwedding.ics" download class="walled">
+			<h4 class="walled linkAccent">Add to calendar</h4></a
+		>
+		<h4>Location</h4>
+		<div class="walled">
+			<span
+				>Tarbin Gardens -
+				<a
+					class="linkAccent"
+					href="https://www.google.com/maps/dir//tarbin+gardens/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x89e20ea6bcde8501:0x7485989680d49dfe?sa=X&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAgnEAA&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAg2EAU"
+					>get directions
+				</a></span
+			>
+		</div>
+
+		<span>Franklin, NH</span>
+
+		<h4>Date</h4>
+		<span>Saturday September 7, 2024</span>
+
+		<h4>Timeline</h4>
 		<div class="center">
-			<span>1pm ⎯ we drink coffee</span>
-			<span>3pm ⎯⎯⎯ we do</span>
-			<span>4pm ⎯⎯⎯⎯ we enjoy cocktails</span>
-			<span>6pm ⎯⎯⎯⎯⎯⎯ we eat dinner</span>
-			<span>8pm ⎯⎯⎯⎯⎯⎯⎯⎯ we party</span>
+			<span>2pm ⎯ we drink coffee (optional, pre-ceremony)</span>
+			<span>4pm ⎯⎯ we do 💍</span>
+			<span>5pm ⎯⎯⎯ we enjoy cocktails (family takes pictures)</span>
+			<span>6pm ⎯⎯⎯⎯ we eat dinner</span>
+			<span>6pm ⎯⎯⎯⎯⎯ we eat cake</span>
+			<span>8pm ⎯⎯⎯⎯⎯⎯ we party</span>
 		</div>
 
 		<a id="faq" href="/#faq"><h2>FAQ</h2></a>
@@ -104,3 +158,4 @@
 </div>
 
 <script src="../../dist/scripts/frontend/home.js"></script>
+<script src="../../dist/scripts/frontend/rsvp.js"></script>
