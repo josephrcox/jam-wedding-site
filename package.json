@@ -1,7 +1,7 @@
 {
   "name": "jam-wedding",
   "version": "1.0.0",
-  "description": "A wishlist application built to stop double-gifting (when two or more people give one person the same gift that they asked for).",
+  "description": "Site for my wedding",
   "main": "server.js",
   "scripts": {
     "start": "nodemon dist/scripts/backend/server.js",
