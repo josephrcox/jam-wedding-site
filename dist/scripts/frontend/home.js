@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', async () => {
 	if (localStorage.getItem('weddingGuestID')) {
 		const response = await fetch(
-			`/api/get/guest/${localStorage.getItem('weddingGuestID')}`
+			`/api/get/guest/${localStorage.getItem('weddingGuestID')}`,
 		);
 		const data = await response.json();
 		console.log(data);
@@ -54,6 +54,7 @@ for (let i = 0; i < clickableSections.length; i++) {
 			section.style.maxHeight = '80px';
 			section.style.marginBottom = '20px';
 		}
+		clickableSections[i].classList.toggle('active');
 	});
 }
 

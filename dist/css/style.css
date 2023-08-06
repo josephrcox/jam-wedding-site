@@ -222,9 +222,9 @@ h4 {
 
 .clickableSection {
 	user-select: none;
+	transition: all 1s;
 }
 
-/* 2nd element in .clickableSection is hidden */
 .clickableSection > *:nth-child(2) {
 	max-height: 0px;
 	overflow: clip;
@@ -232,11 +232,14 @@ h4 {
 	transition: all 0.4s;
 }
 
-/* before .clickableSection > *nth-child(1) */
 .clickableSection > *:nth-child(1):before {
 	content: '>';
 	padding-right: 10px;
 	font-size: 12px;
+	transition: all 1s;
+}
+.clickableSection.active > *:nth-child(1):before {
+	content: 'v';
 }
 
 .header-subitems {
