@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="shortcut icon" href="/images/favicon.ico" />
+	</head>
+	<body>
+		<title>Jam Wedding</title>
+
+		<div class="siteBody">
+			<div id="followUpQsModal" style="display: none">
+				<div id="fuq_additionalGuests">
+					<h2>How many additional guests are you bringing?</h2>
+					<h3>You are allowed <span id="followUpQsModalNum"></span></h3>
+					<input type="number" id="followUpQsAddGuestsInput" min="0" max="" />
+				</div>
+				<div id="fuq_recommendedSongs">
+					<h2>What songs would you like to hear at the reception?</h2>
+					<input
+						type="text"
+						id="followUpQsSongInput"
+						placeholder="September - Earth, Wind, & Fire"
+					/>
+				</div>
+				<div id="fuq_dietaryRestrictions">
+					<h2>Do you have any dietary restrictions?</h2>
+					<input
+						type="text"
+						id="followUpQsDiet"
+						placeholder="I can't eat eggs"
+					/>
+				</div>
+
+				<button id="followUpQsModalSubmit">Submit RSVP</button>
+			</div>
+			<div class="header">
+				<div class="bgHeaderDiv">
+					<div>
+						<img src="/images/bg.png" class="bgHeader" />
+					</div>
+				</div>
+
+				<h1 class="layout-header flex-row">
+					<a href="/" class="logo">Jam Wedding</a>
+				</h1>
+				<div class="header-subitems">
+					<div>
+						<a href="/#aboutus" class="header-subitem">about us</a>
+						<a href="/#details" class="header-subitem">wedding deets</a>
+						<a href="/#faq" class="header-subitem">faq</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="home">
+				<div class="home-content">
+					<div id="countdown"></div>
+					<a id="welcome" href="/#welcome"><h2>Welcome</h2></a>
+					<img src="../../dist/images/engagement.png" class="engagementPhoto" />
+					<p>
+						Hi! You are (probably) here because you have been invited to our
+						wedding! We are so excited to have you join us on our special day.
+					</p>
+					<p>
+						Scroll down to learn more, and make sure to RSVP using the
+						<span class="italic">exclusive</span> link that we sent you
+						personally so that you confirm or decline attendance.
+					</p>
+					<div class="rsvp_invite rsvp_block">
+						<span id="loading">Loading your invite, stand by!</span>
+						<div id="information">
+							<h2>
+								<span id="guest_name"></span>, you are invited to join us on our
+								special day!
+							</h2>
+							<p id="plus1" style="display: none">
+								Your invite includes <span id="plus1number"></span> additional
+								guests.
+								<span id="plus1people"></span>
+							</p>
+
+							<br />
+							<p>
+								Please check out the
+								<a href="/#details" class="linkAccent">event details</a> +
+								<a href="/#faq" class="linkAccent">FAQ</a>. If you have any
+								questions, feel free to reach out to us.
+							</p>
+						</div>
+						<br />
+						<p>Once you know, please RSVP below!</p>
+						<div id="rsvp-buttons" style="display: none">
+							<button id="rsvp-no" class="rsvp-button">NO 🚫</button>
+							<button id="rsvp-yes" class="rsvp-button">YES 🥳</button>
+						</div>
+					</div>
+					<div class="rsvp_accepted rsvp_block">
+						<!-- filled with JS -->
+					</div>
+					<div class="rsvp_denied rsvp_block">
+						<!-- filled with JS -->
+					</div>
+
+					<a id="aboutus" href="/#aboutus"><h2>About us</h2></a>
+					<div id="aboutus-section">
+						<h4>
+							How Samantha describes <span class="accent">how we met</span>
+						</h4>
+						<p>pasta, spaghetti, tinder</p>
+
+						<h4>How Joseph describes <span class="accent">how we met</span></h4>
+						<p>spiderman, roger</p>
+
+						<h4>
+							How Samantha describes the <span class="accent">engagement</span>
+						</h4>
+						<p>pasta, spaghetti, tinder</p>
+
+						<h4>
+							How Joseph describes the <span class="accent">engagement</span>
+						</h4>
+						<p>spiderman, roger</p>
+					</div>
+
+					<a id="details" href="/#details"><h2>Wedding deets (details)</h2></a>
+					<a href="../../dist/jamwedding.ics" download class="walled">
+						<h4 class="walled linkAccent">Add to calendar</h4></a
+					>
+					<h4>Location</h4>
+					<div class="walled">
+						<span
+							>Tarbin Gardens -
+							<a
+								class="linkAccent"
+								href="https://www.google.com/maps/dir//tarbin+gardens/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x89e20ea6bcde8501:0x7485989680d49dfe?sa=X&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAgnEAA&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAg2EAU"
+								>get directions
+							</a></span
+						>
+					</div>
+
+					<span>Franklin, NH</span>
+
+					<h4>Date</h4>
+					<span>Saturday September 7, 2024</span>
+
+					<h4>Timeline</h4>
+					<div class="center">
+						<span>2pm ⎯ we drink coffee (optional, pre-ceremony)</span>
+						<span>4pm ⎯⎯ we do 💍</span>
+						<span>5pm ⎯⎯⎯ we enjoy cocktails (family takes pictures)</span>
+						<span>6pm ⎯⎯⎯⎯ we eat dinner</span>
+						<span>7pm ⎯⎯⎯⎯⎯ we eat cake</span>
+						<span>8pm ⎯⎯⎯⎯⎯⎯ we party</span>
+					</div>
+
+					<a id="faq" href="/#faq"><h2>FAQ</h2></a>
+					<div class="faqs">
+						<div class="clickableSection">
+							<h4>Can I bring kids?</h4>
+							<p>
+								⎯⎯ This wedding is adults-only. If you intend to bring a +1 that
+								is under 18, please ask us first. This is a requirement and a
+								safety issue.
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Can I bring pets?</h4>
+							<p>⎯⎯ Unfortunately, not. Our venue does not allow it.</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Can I bring gifts?</h4>
+							<p>⎯⎯ TBD.</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Will we provide free lodging?</h4>
+							<p>
+								⎯⎯ No, we will not. We picked this location as it is a fair
+								distance from the majority of our guests. If you are planning on
+								consuming alcohol, please plan to have a designated driver as we
+								won't have shuttles either.
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>What is the dress code?</h4>
+							<p>⎯⎯ TBD</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Can I bring a pal? (+1)</h4>
+							<p>
+								⎯⎯ If you are allowed to bring additional guests, this site will
+								tell you when you are RSVPing. If you did not see that, then you
+								must attend without any guests.
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Can I bring alcohol?</h4>
+							<p>⎯⎯ Please don't. We will have alcohol.</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Will I be able to smoke or vape?</h4>
+							<p>
+								⎯⎯ You can smoke or vape in the parking lot, but nowhere else.
+								The parking lot is a short walk from the ceremony and reception
+								areas.
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Is the location handicap accessible?</h4>
+							<p>⎯⎯ TBD.</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Will the ceremony be outdoors or indoors?</h4>
+							<p>
+								⎯⎯ It will be outdoors! Although the chance is low according to
+								weather forecasting, we are planning to have coverage just in
+								case it rains. Bring an umbrella if you want to be sure not to
+								get wet!
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>Does the wedding have a theme?</h4>
+							<p>
+								⎯⎯ No, but since it is in a garden, anything floral is
+								encouraged!
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>What if I can't make it?</h4>
+							<p>
+								⎯⎯ No worries, make sure to RSVP that you can't make it, and/or
+								let Joseph or Samantha know directly.
+							</p>
+						</div>
+						<div class="clickableSection">
+							<h4>What time should I arrive?</h4>
+							<p>⎯⎯ Please see the timeline above.</p>
+						</div>
+						<div class="clickableSection">
+							<h4>
+								Will food and drinks be served at the reception? What kind of
+								food?
+							</h4>
+							<p>⎯⎯ TBD</p>
+						</div>
+						<div class="clickableSection">
+							<h4>
+								I still have questions, what is the best way to contact you?
+							</h4>
+							<p>⎯⎯ Please text Joseph or Samantha directly.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<script src="/scripts/frontend/home.js"></script>
+			<script src="/scripts/frontend/rsvp.js"></script>
+
+			<div class="centerImg">
+				<img src="/images/bg.png" class="bgFooter" />
+			</div>
+		</div>
+	</body>
+</html>

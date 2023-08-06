@@ -3,19 +3,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 const express = require('express');
 const app = express();
-const expressLayouts = require('express-ejs-layouts');
 const { response } = require('express');
 const path = require('path');
 const fs = require('fs');
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '/views'));
-
-app.use(express.static(path.join(__dirname, '../../../')));
-app.set('views', path.join(__dirname, '../../', '/views'));
-app.set('layout', 'layouts/layout');
-
-app.use(expressLayouts);
 const bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '50mb', extended: true }));
 app.use(
@@ -27,6 +18,8 @@ app.use(
 );
 app.use(bodyParser.text({ limit: '200mb' }));
 app.use(express.json());
+
+app.use(express.static('dist'));
 
 // VARIABLES
 const guest_list_id = '900601161684';
@@ -93,20 +86,8 @@ app.put('/api/update/guest/:id', async (req, res) => {
 	res.json(data);
 });
 
-app.get('/admin/:pw', async (req, res) => {
-	if (req.params.pw !== process.env.ADMIN_PW) {
-		return res.redirect('/');
-	}
-	const guest_list = await fetchGuests();
-	res.render('admin.ejs', { guest_list: guest_list });
-});
-
-app.get('/aboutus', async (req, res) => {
-	res.render('aboutus.ejs');
-});
-
 app.get('/', async (req, res) => {
-	res.render('home.ejs');
+	res.sendFile(path.join(__dirname, '../../index.html'));
 });
 
 app.get('*', (req, res) => {
