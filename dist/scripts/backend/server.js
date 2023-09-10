@@ -23,9 +23,58 @@ app.use(express.static('dist'));
 
 // VARIABLES
 const guest_list_id = '900601161684';
+const wishlist_list_id = '901002344671';
 const API_KEY = process.env.API_KEY;
 
 // Document routes
+
+app.get('/api/get/wishlist', async (req, res) => {
+	// Get all wishlist items from the wishlist list in ClickUp, and return them to the frontend if they are not closed status
+	const requestBody = {
+		include_closed: false,
+		archived: false,
+	};
+
+	const resp = await fetch(
+		`https://api.clickup.com/api/v2/list/${wishlist_list_id}/task?include_closed=true&archived=false`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: API_KEY,
+				contentType: 'application/json',
+			},
+		},
+	);
+
+	const data = await resp.json();
+
+	res.json(data);
+});
+
+app.put('/api/wishlist/closeitem', async (req, res) => {
+	const { id } = req.body;
+
+	const query = new URLSearchParams({
+		custom_task_ids: 'false',
+		team_id: '8651601',
+	}).toString();
+
+	const resp = await fetch(
+		`https://api.clickup.com/api/v2/task/${id}?${query}`,
+		{
+			method: 'PUT',
+			headers: {
+				Authorization: API_KEY,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				status: 'complete',
+			}),
+		},
+	);
+	const data = await resp.json();
+	res.json(data);
+});
 
 app.get('/api/get/guest/:id', async (req, res) => {
 	const id = req.params.id;
@@ -33,7 +82,6 @@ app.get('/api/get/guest/:id', async (req, res) => {
 		id = req.params.id.replace('#', '');
 	}
 	const guest = await fetchGuests(id);
-	console.log(guest);
 	res.json(guest);
 });
 
@@ -132,7 +180,7 @@ async function fetchGuests(optionalID) {
 	}
 
 	let data = await resp.json();
-	console.log(data);
+
 	if (optionalID) {
 		let g = Object.create(guestObject);
 		g.id = data.id;
