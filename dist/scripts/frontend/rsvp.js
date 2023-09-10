@@ -15,24 +15,25 @@ const followUpQsAddGuestsInput = document.getElementById(
 );
 const followUpQsModalSubmit = document.getElementById('followUpQsModalSubmit');
 const fuq_additionalGuests = document.getElementById('fuq_additionalGuests');
+const fuq_whoscoming = document.getElementById('fuq_whoscoming');
 const followUpQsSongInput = document.getElementById('followUpQsSongInput');
+const followUpQsGuestsInput = document.getElementById('followUpQsGuests');
 const followUpQsDiet = document.getElementById('followUpQsDiet');
 
 let guest;
 let plus1Count = 0;
 
 function init() {
-	let id = window.location.search.split('?id=')[1];
+	let id = window.location.href.split('?id=')[1];
 
 	showOrHideElementsBasedOnLocalData();
+	// If id is not provided or is empty, default to the one in localStorage.
+	if (id == undefined || id.length == 0) {
+		id = localStorage.weddingGuestID;
+	}
 
-	if (
-		(id !== undefined && id.length !== 0) ||
-		localStorage.weddingGuestID !== undefined
-	) {
-		if (localStorage.weddingGuestID !== undefined) {
-			id = localStorage.weddingGuestID;
-		}
+	// If id is now set (either from the URL or localStorage), use it.
+	if (id !== undefined && id.length !== 0) {
 		localStorage.setItem('weddingGuestID', id);
 		fetchData(id);
 	}
@@ -101,8 +102,6 @@ function plus1people() {
 }
 
 rsvp_yes.addEventListener('click', async () => {
-	let commentString = '';
-	let additionalGuestsConfirmed = 0;
 	followUpQsModal.style.display = 'flex';
 	if (plus1Count > 0) {
 		fuq_additionalGuests.style.display = '';
@@ -112,6 +111,7 @@ rsvp_yes.addEventListener('click', async () => {
 		followUpQsAddGuestsInput.value = plus1Count;
 	} else {
 		fuq_additionalGuests.style.display = 'none';
+		fuq_whoscoming.style.display = 'none';
 	}
 });
 
@@ -129,6 +129,7 @@ followUpQsModalSubmit.addEventListener('click', async () => {
 	}
 	commentString += 'Song request: ' + followUpQsSongInput.value + '\n';
 	commentString += 'Dietary restrictions: ' + followUpQsDiet.value + '\n';
+	commentString += 'Who is coming: ' + followUpQsGuestsInput.value + '\n';
 
 	await fetch(`/api/comment/guest/${guest.id}`, {
 		method: 'PUT',

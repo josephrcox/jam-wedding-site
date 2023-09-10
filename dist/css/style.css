@@ -313,7 +313,7 @@ h4 {
 }
 
 .linkAccent {
-	color: #ff0000 !important;
+	color: var(--navy-blue) !important;
 	text-decoration: underline;
 }
 
