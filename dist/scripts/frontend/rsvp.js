@@ -126,10 +126,10 @@ followUpQsModalSubmit.addEventListener('click', async () => {
 	if (plus1Count > 0) {
 		commentString +=
 			'Additional guests confirmed: ' + followUpQsAddGuestsInput.value + '\n';
+		commentString += 'Who is coming: ' + followUpQsGuestsInput.value + '\n';
 	}
 	commentString += 'Song request: ' + followUpQsSongInput.value + '\n';
 	commentString += 'Dietary restrictions: ' + followUpQsDiet.value + '\n';
-	commentString += 'Who is coming: ' + followUpQsGuestsInput.value + '\n';
 
 	await fetch(`/api/comment/guest/${guest.id}`, {
 		method: 'PUT',
