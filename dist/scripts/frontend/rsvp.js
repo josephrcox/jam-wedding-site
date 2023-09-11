@@ -17,7 +17,7 @@ const followUpQsModalSubmit = document.getElementById('followUpQsModalSubmit');
 const fuq_additionalGuests = document.getElementById('fuq_additionalGuests');
 const fuq_whoscoming = document.getElementById('fuq_whoscoming');
 const followUpQsSongInput = document.getElementById('followUpQsSongInput');
-const followUpQsGuestsInput = document.getElementById('followUpQsGuests');
+const followUpQsGuestsInput = document.getElementById('followUpQsGuestsInput');
 const followUpQsDiet = document.getElementById('followUpQsDiet');
 
 let guest;
