@@ -22,7 +22,7 @@
 		</script>
 	</head>
 	<body>
-		<title>Jam Wedding</title>
+		<title>Jam Wedding // beta</title>
 
 		<div class="siteBody">
 			<div id="followUpQsModal" style="display: none">
@@ -66,10 +66,8 @@
 				</h1>
 				<div class="header-subitems">
 					<div>
-						<a href="/#aboutus" class="header-subitem">about us</a>
-						<a href="/#details" class="header-subitem">wedding deets</a>
+						<a href="/#details" class="header-subitem">event details</a>
 						<a href="/#faq" class="header-subitem">faq</a>
-						<a href="/#wishlist" class="header-subitem">wishlist</a>
 					</div>
 				</div>
 			</div>
@@ -77,15 +75,14 @@
 			<div class="home">
 				<div class="home-content">
 					<div id="countdown"></div>
-					<a id="welcome" href="/#welcome"><h2>Welcome</h2></a>
+					<a id="welcome" href="/#welcome"><h2>📆 SAVE THE DATE!</h2></a>
 					<img src="/images/engagement.png" class="engagementPhoto" />
 					<p>
-						Hi! In just under a year, Samantha and Joseph will be getting
-						married! 🎉
+						Hi! In just under a year, we will be getting married! 🎉
 						<br />
 						<br />
 						We are so excited to share this special day with you. Scroll down to
-						see FAQs and early event info like the date and city.
+						see frequently asked questioned and early event info!
 						<br />
 						<br />
 						Please let us know if you have any questions, you will get an
@@ -126,42 +123,8 @@
 						<!-- filled with JS -->
 					</div>
 
-					<a id="aboutus" href="/#aboutus"><h2>About us</h2></a>
-					<div id="aboutus-section">
-						<h4>
-							How Samantha describes <span class="accent">how we met</span>
-						</h4>
-						<p>pasta, spaghetti, tinder</p>
-
-						<h4>How Joseph describes <span class="accent">how we met</span></h4>
-						<p>spiderman, roger</p>
-
-						<h4>
-							How Samantha describes the <span class="accent">engagement</span>
-						</h4>
-						<p>pasta, spaghetti, tinder</p>
-
-						<h4>
-							How Joseph describes the <span class="accent">engagement</span>
-						</h4>
-						<p>spiderman, roger</p>
-					</div>
-
-					<a id="details" href="/#details"><h2>Wedding deets (details)</h2></a>
-					<a href="/jamwedding.ics" download class="walled">
-						<h4 class="walled linkAccent">Add to calendar</h4></a
-					>
+					<a id="details" href="/#details"><h2>📸 Event details</h2></a>
 					<h4>Location</h4>
-					<div class="walled">
-						<span
-							>Tarbin Gardens -
-							<a
-								class="linkAccent"
-								href="https://www.google.com/maps/dir//tarbin+gardens/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x89e20ea6bcde8501:0x7485989680d49dfe?sa=X&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAgnEAA&ved=2ahUKEwis2MXu1ciAAxWvGlkFHanGDooQ9Rd6BAg2EAU"
-								>get directions
-							</a></span
-						>
-					</div>
 
 					<span>Franklin, NH</span>
 
@@ -170,16 +133,34 @@
 
 					<h4>Timeline</h4>
 					<div class="center">
-						<span>2pm ⎯ we drink coffee (optional)</span>
+						<span>2pm ⎯ drink coffee with joseph (optional)</span>
 						<span>4pm ⎯⎯ we do 💍</span>
 						<span>5pm ⎯⎯⎯ 🍹 + 📸</span>
 						<span>6pm ⎯⎯⎯⎯ we eat dinner</span>
 						<span>7pm ⎯⎯⎯⎯⎯ we eat cake</span>
 						<span>8pm ⎯⎯⎯⎯⎯⎯ we party</span>
 					</div>
+					<div id="messageContainer" style="display: none">
+						<h2>💬 Leave a message to the bride & groom</h2>
+						<div id="messages">
+							<div id="message"><p>Loading messages...</p></div>
+						</div>
+						<input
+							type="text"
+							id="postMessageInput"
+							placeholder="write a message & hit enter"
+						/>
+					</div>
 
-					<a id="faq" href="/#faq"><h2>FAQ</h2></a>
+					<a id="faq" href="/#faq"><h2>🤔 FAQ</h2></a>
 					<div class="faqs">
+						<div class="clickableSection">
+							<h4>How do I RSVP?</h4>
+							<p>
+								⎯⎯ We will be sending official RSVPs around Spring or Summer of
+								2024.
+							</p>
+						</div>
 						<div class="clickableSection">
 							<h4>Can I bring kids?</h4>
 							<p>
@@ -190,20 +171,6 @@
 						<div class="clickableSection">
 							<h4>Can I bring pets?</h4>
 							<p>⎯⎯ Unfortunately, not. Our venue does not allow it.</p>
-						</div>
-						<!-- <div class="clickableSection">
-							<h4>Will you provide free lodging?</h4>
-							<p>
-								⎯⎯ No, we will not. We picked this location as it is a fair
-								distance from the majority of our guests. If you are planning on
-								consuming alcohol, please plan to have a designated driver as we
-								won't have shuttles either.
-								⎯⎯ Unfortunately, it's not in our budget. We 
-							</p>
-						</div> -->
-						<div class="clickableSection">
-							<h4>What is the dress code?</h4>
-							<p>⎯⎯ Semi-formal</p>
 						</div>
 						<div class="clickableSection">
 							<h4>Can I bring a pal? (+1)</h4>
@@ -218,43 +185,21 @@
 							<p>⎯⎯ Please don't. We will have alcohol.</p>
 						</div>
 						<div class="clickableSection">
-							<h4>Will I be able to smoke or vape?</h4>
-							<p>
-								⎯⎯ You can smoke or vape in the parking lot, but nowhere else.
-								The parking lot is a short walk from the ceremony and reception
-								areas.
-							</p>
-						</div>
-						<div class="clickableSection">
-							<h4>Is the location handicap accessible?</h4>
-							<p>⎯⎯ TBD.</p>
-						</div>
-						<div class="clickableSection">
 							<h4>Will the ceremony be outdoors or indoors?</h4>
 							<p>
 								⎯⎯ It will be outdoors! Although the chance is low according to
 								weather forecasting, we are planning to have coverage just in
 								case it rains. Bring an umbrella if you want to be sure not to
-								get wet!
-							</p>
-						</div>
-						<div class="clickableSection">
-							<h4>Does the wedding have a theme?</h4>
-							<p>
-								⎯⎯ No, but since it is in a garden, anything floral is
-								encouraged!
+								get wet.
 							</p>
 						</div>
 						<div class="clickableSection">
 							<h4>What if I can't make it?</h4>
 							<p>
 								⎯⎯ No worries, make sure to RSVP that you can't make it, and/or
-								let Joseph or Samantha know directly.
+								let Joseph or Samantha know directly. Sooner the better, but no
+								rush until you get the RSVP.
 							</p>
-						</div>
-						<div class="clickableSection">
-							<h4>What time should I arrive?</h4>
-							<p>⎯⎯ Please see the timeline above.</p>
 						</div>
 						<div class="clickableSection">
 							<h4>
@@ -264,20 +209,19 @@
 							<p>⎯⎯ TBD</p>
 						</div>
 						<div class="clickableSection">
-							<h4>
-								I still have questions, what is the best way to contact you?
-							</h4>
+							<h4>I still have questions, what do I do?!</h4>
 							<p>⎯⎯ Please text Joseph or Samantha directly.</p>
 						</div>
 					</div>
-					<a id="wishlist" href="/#wishlist"><h2>Wishlist</h2></a>
-					<div id="wishlistContainer">Wishlist/registry coming soon!</div>
+					<!-- <a id="wishlist" href="/#wishlist"><h2>Wishlist</h2></a>
+					<div id="wishlistContainer">Wishlist/registry coming soon!</div> -->
 				</div>
 			</div>
 
 			<script src="/scripts/frontend/home.js"></script>
-			<script src="/scripts/frontend/rsvp.js"></script>
-			<script src="/scripts/frontend/wishlist.js"></script>
+			<!-- <script src="/scripts/frontend/rsvp.js"></script>
+			<script src="/scripts/frontend/wishlist.js"></script> -->
+			<script src="/scripts/frontend/message.js"></script>
 
 			<div class="centerImg">
 				<img src="/images/bg.png" class="bgFooter" />

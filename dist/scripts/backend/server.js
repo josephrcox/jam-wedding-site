@@ -24,9 +24,69 @@ app.use(express.static('dist'));
 // VARIABLES
 const guest_list_id = '900601161684';
 const wishlist_list_id = '901002344671';
+const message_list_id = '901002544832';
 const API_KEY = process.env.API_KEY;
 
 // Document routes
+
+app.get('/api/get/messages', async (req, res) => {
+	// get tasks from message_list_id
+	const query = new URLSearchParams({
+		archived: 'false',
+		page: '0',
+		include_closed: 'false',
+	}).toString();
+
+	const resp = await fetch(
+		`https://api.clickup.com/api/v2/list/${message_list_id}/task?${query}`,
+		{
+			method: 'GET',
+			headers: {
+				Authorization: API_KEY,
+			},
+		},
+	);
+	const data = await resp.json();
+
+	let messages = [];
+	for (let i = 0; i < data.tasks.length; i++) {
+		let dateCreatedTimeStamp = parseInt(data.tasks[i].date_created);
+		// convert to 08/23/2023 from 1694656633677 (epoch)
+		let dateCreated = new Date(dateCreatedTimeStamp).toLocaleDateString();
+
+		messages.push([data.tasks[i].name, dateCreated]);
+	}
+	res.json(messages);
+});
+
+app.post('/api/post/message', async (req, res) => {
+	// create a task in message_list_id
+	const message = req.body.message;
+	const requestBody = {
+		name: message,
+		assignees: [],
+		notify_all: true,
+	};
+
+	const listId = 'YOUR_list_id_PARAMETER';
+	const resp = await fetch(
+		`https://api.clickup.com/api/v2/list/${message_list_id}/task`,
+		{
+			method: 'POST',
+			headers: {
+				Authorization: API_KEY,
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(requestBody),
+		},
+	);
+	const data = await resp.json();
+	let dateCreatedTimeStamp = parseInt(data.date_created);
+	// convert to 08/23/2023 from 1694656633677 (epoch)
+	let dateCreated = new Date(dateCreatedTimeStamp).toLocaleDateString();
+
+	res.json([data.name, dateCreated]);
+});
 
 app.get('/api/get/wishlist', async (req, res) => {
 	// Get all wishlist items from the wishlist list in ClickUp, and return them to the frontend if they are not closed status

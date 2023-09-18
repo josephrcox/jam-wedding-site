@@ -51,7 +51,7 @@ for (let i = 0; i < clickableSections.length; i++) {
 			section.style.margin = '0';
 		} else {
 			section.style.display = 'block';
-			section.style.maxHeight = '80px';
+			section.style.maxHeight = '150px';
 			section.style.marginBottom = '20px';
 		}
 		clickableSections[i].classList.toggle('active');

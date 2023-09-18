@@ -470,7 +470,7 @@ input {
 		position: sticky;
 	}
 	.header-subitem {
-		font-size: 16px;
+		font-size: 21px;
 	}
 	.logo {
 		font-size: 56px;
@@ -731,4 +731,53 @@ span.header-subtitle {
 	/* italic */
 	font-style: italic;
 	color: #b4b4b4;
+}
+
+#messages {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--sage);
+	color: white;
+	max-height: 300px;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
+	min-height: 100px;
+}
+
+.message {
+	margin-left: 10px;
+	padding-top: 0px;
+	/* italic */
+	font-style: italic;
+	margin-right: 10px;
+}
+
+#postMessageInput {
+	width: 80%;
+	height: 40px;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	border: 1px solid black;
+	margin-left: 0px;
+	margin-top: 10px;
+	font-size: 18px;
+	text-align: left;
+}
+
+.message > p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.message > p::before {
+	content: '💬';
+	padding-right: 10px;
+	font-size: 12px;
+}
+
+.message.new {
+	color: red;
 }
