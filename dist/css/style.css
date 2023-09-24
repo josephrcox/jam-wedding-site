@@ -476,6 +476,9 @@ input {
 		font-size: 56px;
 		margin-top: 10px;
 	}
+	.itemStatus {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 550px) {
@@ -572,10 +575,6 @@ p.status {
 	color: #757575;
 }
 
-.itemStatus {
-	margin-right: 20px;
-}
-
 .purchaseButton {
 	padding: 5px 10px;
 	border: none;
@@ -613,13 +612,8 @@ p.status {
 	color: #888;
 }
 
-.itemStatus {
-	font-size: 14px;
-	margin-right: 16px;
-}
-
 .purchaseButton {
-	margin-top: 8px; /* Space between status and button */
+	/* margin-top: 8px; */ /* Space between status and button */
 	padding: 8px 12px;
 	font-size: 14px;
 }
@@ -688,13 +682,8 @@ p.status {
 	color: #888;
 }
 
-.itemStatus {
-	font-size: 14px;
-	margin-right: 16px;
-}
-
 .purchaseButton {
-	margin-top: 8px; /* Space between status and button */
+	/* margin-top: 8px; */ /* Space between status and button */
 	padding: 8px 12px;
 	font-size: 14px;
 }
@@ -717,11 +706,16 @@ p.status {
 		margin-right: 16px; /* Space between link and status/button */
 		display: flex;
 		align-items: center;
+		width: 51%;
 	}
 
 	.itemName {
 		margin-bottom: 0;
 		margin-right: 8px; /* Space between name and domain on the same line */
+	}
+	.itemStatus {
+		font-size: 14px;
+		margin-right: 16px;
 	}
 }
 
