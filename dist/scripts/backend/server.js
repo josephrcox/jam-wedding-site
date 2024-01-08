@@ -29,26 +29,8 @@ const API_KEY = process.env.API_KEY;
 // Document routes
 
 app.get('/api/get/wishlist', async (req, res) => {
-	// Get all wishlist items from the wishlist list in ClickUp, and return them to the frontend if they are not closed status
-	const requestBody = {
-		include_closed: false,
-		archived: false,
-	};
-
-	const resp = await fetch(
-		`https://api.clickup.com/api/v2/list/${wishlist_list_id}/task?include_closed=true&archived=false`,
-		{
-			method: 'GET',
-			headers: {
-				Authorization: API_KEY,
-				contentType: 'application/json',
-			},
-		},
-	);
-
-	const data = await resp.json();
-
-	res.json(data);
+	// 302 redirect to https://app.clickup.com
+	res.redirect(302, `https://app.clickup.com/`);
 });
 
 app.put('/api/wishlist/closeitem', async (req, res) => {
